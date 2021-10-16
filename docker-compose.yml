@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  app: 
+    build: . 
+    command: npm start 
+    ports:
+      - "8080:8080" 
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    networks:
+      - network
+
+  postgresql:
+    image: postgres:12.2
+    environment:
+      POSTGRES_DB: dbTrabalho
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./database/db/data:/var/lib/postgresql/data 
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+       - network
+ 
+  pgadmin:
+    image: dpage/pgadmin4:4.18
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgresql
+    networks:
+       - network
+  
+networks: 
+  network:
+    driver: bridge
