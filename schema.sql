@@ -56,9 +56,37 @@ CREATE TABLE IF NOT EXISTS inscricao_etapas (
     FOREIGN KEY (cd_etapa) REFERENCES etapas (cd_etapa)
 );
 
-insert into departamentos (cd_departamento, ds_departamento) values (90, 'n/a');
+insert into departamentos (cd_departamento, ds_departamento) values (90, 'Departamento de Engenharia de Software');
 insert into departamentos (cd_departamento, ds_departamento) values (89, 'Computer Software: Prepackaged Software');
 insert into departamentos (cd_departamento, ds_departamento) values (39, 'Business Services');
-insert into departamentos (cd_departamento, ds_departamento) values (37, 'Integrated oil Companies');
-insert into departamentos (cd_departamento, ds_departamento) values (47, 'Banks');
-insert into departamentos (cd_departamento, ds_departamento) values (52, 'Steel/Iron Ore');
+
+insert into cargos (cd_cargo, ds_cargo) values (1, 'Engineer');
+insert into cargos (cd_cargo, ds_cargo) values (2, 'Nurse');
+insert into cargos (cd_cargo, ds_cargo) values (3, 'Trainee');
+insert into cargos (cd_cargo, ds_cargo) values (4, 'Professor');
+
+insert into concursos (cd_concurso) values (15);
+insert into concursos (cd_concurso) values (24);
+insert into concursos (cd_concurso) values (12);
+insert into concursos (cd_concurso) values (11);
+
+insert into etapas (cd_etapa, cd_concurso) values (10, 11);
+insert into etapas (cd_etapa, cd_concurso) values (20, 24);
+insert into etapas (cd_etapa, cd_concurso) values (30, 12);
+insert into etapas (cd_etapa, cd_concurso) values (40, 15);
+
+insert into inscricao (cd_inscricao, cd_cargo, cd_concurso, ds_nomecompleto, nr_cpf, ds_email) values (99, 1, 24, 'Pericles', 123456, 'pericles@hotmail.com');
+insert into inscricao (cd_inscricao, cd_cargo, cd_concurso, ds_nomecompleto, nr_cpf, ds_email) values (19, 2, 15, 'Alice', 654321, 'alice@hotmail.com');
+insert into inscricao (cd_inscricao, cd_cargo, cd_concurso, ds_nomecompleto, nr_cpf, ds_email) values (39, 3, 11, 'Jeff', 123123, 'jeff@hotmail.com');
+
+insert into inscricao_etapas (cd_inscricao, cd_etapa, nr_nota) values (99,10,10);
+insert into inscricao_etapas (cd_inscricao, cd_etapa, nr_nota) values (19,20,7);
+insert into inscricao_etapas (cd_inscricao, cd_etapa, nr_nota) values (39,30,8);
+
+insert into cargos_concursos (cd_cargo, cd_concurso) values (2, 15);
+insert into cargos_concursos (cd_cargo, cd_concurso) values (3, 24);
+insert into cargos_concursos (cd_cargo, cd_concurso) values (4, 12);
+
+insert into departamentos_cargos (cd_departamento, cd_cargo) values (90, 1);
+insert into departamentos_cargos (cd_departamento, cd_cargo) values (89, 2);
+insert into departamentos_cargos (cd_departamento, cd_cargo) values (39, 3);
